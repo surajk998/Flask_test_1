@@ -17,6 +17,10 @@ api = Api(app)
 
 jwt = JWT(app, authenticate, identity) # JWT creates endpoint name /auth
 
+@app.before_first_request
+def create_tables():
+  db.create_all()
+
 api.add_resource(Store,'/store/<string:name>')
 api.add_resource(Item, '/item/<string:name>') # http://127.0.0.1:5000/item/Name
 api.add_resource(ItemList, '/items') #http://127.0.0.1:5000/items
