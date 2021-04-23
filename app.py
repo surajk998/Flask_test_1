@@ -10,7 +10,7 @@ from resources.items import Item, ItemList
 from resources.store import Store, StoreList
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgresql://jksralrgzbgkqv:22d21686dbcc42555744d39189f917994303f9b3cf1744911a38ba9dd8fe5c4c@ec2-176-34-222-188.eu-west-1.compute.amazonaws.com:5432/d1a0ov6v0ab3rd','sqlite:///data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db').replace('postgres://', 'postgresql://')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'suri'
 api = Api(app)
